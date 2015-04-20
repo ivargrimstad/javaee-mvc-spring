@@ -2,7 +2,7 @@
    <modelVersion>4.0.0</modelVersion>
 
    <groupId>eu.agilejava</groupId>
-   <artifactId>mvc-spring</artifactId>
+   <artifactId>javaee-mvc-spring</artifactId>
    <version>1.0-SNAPSHOT</version>
    <packaging>pom</packaging>
 
