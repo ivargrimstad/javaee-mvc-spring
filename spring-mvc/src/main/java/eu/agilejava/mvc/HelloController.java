@@ -21,34 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-@Configuration
-@ComponentScan("eu.agilejava.mvc")
-@EnableWebMvc
-public class ApplicationConfig extends WebMvcConfigurerAdapter {
+@Controller
+public class HelloController {
 
-   @Bean
-   public ViewResolver viewResolver() {
+   @RequestMapping(value = "/hello.htm")
+   public ModelAndView helloWorld() {
 
-      InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-      viewResolver.setViewClass(JstlView.class);
-      viewResolver.setPrefix("/WEB-INF/views/");
-      viewResolver.setSuffix(".jsp");
+      Map<String, Object> helloModel = new HashMap<>();
+      helloModel.put("message", "Ivar");
+      
+      ModelAndView mv = new ModelAndView("hello", helloModel);
 
-      return viewResolver;
+      return mv;
    }
 }
