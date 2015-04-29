@@ -6,6 +6,6 @@
       <title>Spring MVC Hello Demo</title>
    </head>
    <body>
-      <h1>Hello ${message}</h1>
+      <h1>Hello ${name}</h1>
    </body>
 </html>

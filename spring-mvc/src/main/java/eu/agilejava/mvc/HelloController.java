@@ -40,7 +40,7 @@ public class HelloController {
    public ModelAndView helloWorld() {
 
       Map<String, Object> helloModel = new HashMap<>();
-      helloModel.put("message", "Ivar");
+      helloModel.put("name", "Ivar");
       
       ModelAndView mv = new ModelAndView("hello", helloModel);
 
