@@ -21,38 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.agilejava.mvc.config;
+package eu.agilejava.mvc;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-public class ApplicationInitializer implements WebApplicationInitializer {
+public class HelloBean {
 
-   @Override
-   public void onStartup(ServletContext servletContext) throws ServletException {
+   @NotNull
+   @Size(min = 1, max = 16)
+   private String firstName;
 
-      WebApplicationContext context = createWebAppContext();
-      servletContext.addListener(new ContextLoaderListener(context));
+   @NotNull
+   @Size(min = 1, max = 24)
+   private String lastName;
 
-      ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
-      registration.setLoadOnStartup(1);
-      registration.addMapping("/hello");
-
+   public String getFirstName() {
+      return firstName;
    }
 
-   private WebApplicationContext createWebAppContext() {
-      AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-      appContext.register(ApplicationConfig.class);
-      return appContext;
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
    }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
 }

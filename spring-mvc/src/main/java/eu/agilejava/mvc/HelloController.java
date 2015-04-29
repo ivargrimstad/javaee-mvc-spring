@@ -25,8 +25,16 @@ package eu.agilejava.mvc;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -36,14 +44,51 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
+   @Autowired
+   private Validator validator;
+
    @RequestMapping(value = "hello")
    public ModelAndView helloWorld() {
 
       Map<String, Object> helloModel = new HashMap<>();
       helloModel.put("name", "Ivar");
-      
+
       ModelAndView mv = new ModelAndView("hello", helloModel);
 
       return mv;
+   }
+
+   @RequestMapping(value = "hello", method = POST)
+   public ModelAndView formPost(@ModelAttribute("form") @Validated HelloBean form, BindingResult bindingResult) {
+
+      if (bindingResult.hasErrors()) {
+
+         Map<String, Object> errorModel = new HashMap<>();
+         ObjectError error = bindingResult.getAllErrors().iterator().next();
+         errorModel.put("property", ((FieldError) error).getField());
+         errorModel.put("value", ((FieldError) error).getRejectedValue());
+         errorModel.put("message", error.getDefaultMessage());
+
+         ModelAndView mv = new ModelAndView("error", errorModel);
+
+         return mv;
+      }
+
+      Map<String, Object> helloModel = new HashMap<>();
+      helloModel.put("name", form.getFirstName() + " " + form.getLastName());
+
+      ModelAndView mv = new ModelAndView("hello", helloModel);
+
+      return mv;
+//      if (validationResult.isFailed()) {
+//         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
+//         final ConstraintViolation<?> cv = set.iterator().next();
+//         final String property = cv.getPropertyPath().toString();
+//
+//         models.put("property", property.substring(property.lastIndexOf('.') + 1));
+//         models.put("value", cv.getInvalidValue());
+//         models.put("message", cv.getMessage());
+//
+//         return Response.status(BAD_REQUEST).entity("error.jsp").build();
    }
 }
