@@ -36,7 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
-   @RequestMapping(value = "/hello.htm")
+   @RequestMapping(value = "hello")
    public ModelAndView helloWorld() {
 
       Map<String, Object> helloModel = new HashMap<>();

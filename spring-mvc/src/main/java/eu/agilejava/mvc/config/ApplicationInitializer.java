@@ -31,15 +31,12 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
-public class ApplicationInitializer extends WebMvcConfigurerAdapter implements WebApplicationInitializer {
+public class ApplicationInitializer implements WebApplicationInitializer {
 
    @Override
    public void onStartup(ServletContext servletContext) throws ServletException {
@@ -51,16 +48,6 @@ public class ApplicationInitializer extends WebMvcConfigurerAdapter implements W
       registration.setLoadOnStartup(1);
       registration.addMapping("/");
 
-   }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("home");
-    }
-    
-   @Override
-   public void configureViewResolvers(ViewResolverRegistry registry) {
-      registry.jsp("/WEB-INF/jsp/", ".jsp");
    }
 
    private WebApplicationContext createWebAppContext() {
