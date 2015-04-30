@@ -64,6 +64,11 @@ public class HelloController {
       models.put("name", name);
    }
 
+   @GET
+   @View("form.jsp")
+   public void form() {
+   }
+
    @POST
    @ValidateOnExecution(type = ExecutableType.NONE)
    public Response formPost(@Valid @BeanParam HelloBean form) {
@@ -77,11 +82,11 @@ public class HelloController {
          models.put("value", cv.getInvalidValue());
          models.put("message", cv.getMessage());
 
-         return Response.status(BAD_REQUEST).entity("error.jsp").build();
+         return Response.status(BAD_REQUEST).entity("form.jsp").build();
       }
 
       models.put("name", form.getFirstName() + " " + form.getLastName());
-      
+
       return Response.status(OK).entity("hello.jsp").build();
    }
 }
