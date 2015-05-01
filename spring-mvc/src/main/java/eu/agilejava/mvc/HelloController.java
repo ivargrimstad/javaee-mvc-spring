@@ -51,9 +51,9 @@ public class HelloController {
    public ModelAndView helloWorld() {
 
       Map<String, Object> helloModel = new HashMap<>();
-      helloModel.put("name", "Ivar");
+//      helloModel.put("name", "Ivar");
 
-      ModelAndView mv = new ModelAndView("hello", helloModel);
+      ModelAndView mv = new ModelAndView("form", helloModel);
 
       return mv;
    }
@@ -69,7 +69,7 @@ public class HelloController {
          errorModel.put("value", ((FieldError) error).getRejectedValue());
          errorModel.put("message", error.getDefaultMessage());
 
-         ModelAndView mv = new ModelAndView("error", errorModel);
+         ModelAndView mv = new ModelAndView("form", errorModel);
 
          return mv;
       }
