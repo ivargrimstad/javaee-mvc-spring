@@ -43,7 +43,8 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.OK;
 
 /**
- *
+ * Simple Hello controller for MVC 1.0.
+ * 
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
  */
 @Path("hello")

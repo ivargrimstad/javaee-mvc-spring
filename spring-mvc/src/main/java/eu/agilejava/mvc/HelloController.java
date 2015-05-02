@@ -38,7 +38,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
+ * Simple Hello controller for Spring MVC.
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Controller
