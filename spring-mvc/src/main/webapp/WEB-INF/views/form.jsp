@@ -20,6 +20,7 @@
          <input type="text" name="lastName">
          <input type="submit" value="Submit" name="button">
       </form>
+      TODO: show all messages, and only when present
       Property: ${property}<br/>
       Value: ${value}<br/>
       Message: ${message}<br/>

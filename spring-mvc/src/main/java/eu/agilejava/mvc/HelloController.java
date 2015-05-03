@@ -51,7 +51,6 @@ public class HelloController {
    public ModelAndView helloWorld() {
 
       Map<String, Object> helloModel = new HashMap<>();
-//      helloModel.put("name", "Ivar");
 
       ModelAndView mv = new ModelAndView("form", helloModel);
 
