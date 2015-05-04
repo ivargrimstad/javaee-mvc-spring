@@ -15,14 +15,13 @@
       <p>An empty first and/or last name will result in a 400 (validation error)</p>
       <form name="form" action="hello" method="post">
          <label id="firstName">First Name:</label>
-         <input type="text" name="firstName">
+         <input type="text" name="firstName" value="${form.firstName}">
          <label id="lastName">Last Name:</label>
-         <input type="text" name="lastName">
+         <input type="text" name="lastName" value="${form.lastName}">
          <input type="submit" value="Submit" name="button">
       </form>
-      TODO: show all messages, and only when present
-      Property: ${property}<br/>
-      Value: ${value}<br/>
-      Message: ${message}<br/>
+         
+      fn: ${firstName}<br/>
+      ln: ${lastName}<br/>
    </body>
 </html>

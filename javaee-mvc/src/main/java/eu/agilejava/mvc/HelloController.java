@@ -44,7 +44,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 
 /**
  * Simple Hello controller for MVC 1.0.
- * 
+ *
  * @author Ivar Grimstad <ivar.grimstad@gmail.com>
  */
 @Path("hello")
@@ -75,14 +75,22 @@ public class HelloController {
    public Response formPost(@Valid @BeanParam HelloBean form) {
 
       if (validationResult.isFailed()) {
-         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-         final ConstraintViolation<?> cv = set.iterator().next();
-         final String property = cv.getPropertyPath().toString();
+//         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
+//         final ConstraintViolation<?> cv = set.iterator().next();
+//         final String property = cv.getPropertyPath().toString();
+//
+//         models.put("property", property.substring(property.lastIndexOf('.') + 1));
+//         models.put("value", cv.getInvalidValue());
+//         models.put("message", cv.getMessage());
 
-         models.put("property", property.substring(property.lastIndexOf('.') + 1));
-         models.put("value", cv.getInvalidValue());
-         models.put("message", cv.getMessage());
+         validationResult.getAllViolations().stream()
+                 .forEach((v) -> {
+                    final String p = v.getPropertyPath().toString();
+                    models.put(p.substring(p.lastIndexOf('.') + 1), v.getMessage());
+                 });
 
+         models.put("form", form);
+         
          return Response.status(BAD_REQUEST).entity("form.jsp").build();
       }
 
