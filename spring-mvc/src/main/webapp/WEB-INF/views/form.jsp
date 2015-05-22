@@ -9,7 +9,7 @@
 <html>
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Hello Form</title>
+      <title>Spring MVC Application</title>
    </head>
    <body>
       <p>An empty first and/or last name will result in a 400 (validation error)</p>
@@ -20,9 +20,8 @@
          <input type="text" name="lastName">
          <input type="submit" value="Submit" name="button">
       </form>
-      TODO: show all messages, and only when present
-      Property: ${property}<br/>
-      Value: ${value}<br/>
-      Message: ${message}<br/>
+      <p/>
+      FirstName: ${firstName}<br/>
+      LastName : ${lastName}<br/>
    </body>
 </html>

@@ -39,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Simple Hello controller for Spring MVC.
+ *
  * @author Ivar Grimstad (ivar.grimstad@gmail.com)
  */
 @Controller
@@ -68,6 +69,11 @@ public class HelloController {
          errorModel.put("value", ((FieldError) error).getRejectedValue());
          errorModel.put("message", error.getDefaultMessage());
 
+         bindingResult.getAllErrors().stream()
+                 .forEach(v -> {
+                    errorModel.put(((FieldError) v).getField(), v.getDefaultMessage());
+                 });
+
          ModelAndView mv = new ModelAndView("form", errorModel);
 
          return mv;
@@ -79,15 +85,5 @@ public class HelloController {
       ModelAndView mv = new ModelAndView("hello", helloModel);
 
       return mv;
-//      if (validationResult.isFailed()) {
-//         final Set<ConstraintViolation<?>> set = validationResult.getAllViolations();
-//         final ConstraintViolation<?> cv = set.iterator().next();
-//         final String property = cv.getPropertyPath().toString();
-//
-//         models.put("property", property.substring(property.lastIndexOf('.') + 1));
-//         models.put("value", cv.getInvalidValue());
-//         models.put("message", cv.getMessage());
-//
-//         return Response.status(BAD_REQUEST).entity("error.jsp").build();
    }
 }

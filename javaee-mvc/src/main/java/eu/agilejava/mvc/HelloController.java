@@ -75,13 +75,13 @@ public class HelloController {
       if (validationResult.isFailed()) {
 
          validationResult.getAllViolations().stream()
-                 .forEach((v) -> {
+                 .forEach(v -> {
                     final String p = v.getPropertyPath().toString();
                     models.put(p.substring(p.lastIndexOf('.') + 1), v.getMessage());
                  });
 
          models.put("form", form);
-         
+
          return Response.status(BAD_REQUEST).entity("form.jsp").build();
       }
 
