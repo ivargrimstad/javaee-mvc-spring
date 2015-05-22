@@ -21,7 +21,10 @@
          <input type="submit" value="Submit" name="button">
       </form>
       <p/>   
-      FirstName: ${firstName}<br/>
-      LastName: ${lastName}<br/>
-   </body>
+     <c:if test="${firstName != null}">
+        <font color="red">FirstName: ${firstName}</font><br/>
+      </c:if>
+        <c:if test="${lastName != null}">
+        <font color="red">LastName: ${lastName}</font><br/>
+      </c:if>
 </html>
